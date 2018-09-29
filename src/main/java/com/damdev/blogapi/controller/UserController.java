@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/damdev/api/user")
 public class UserController {
 
   @Autowired
   UserService userService;
 
-  @PostMapping("/damdev/api/user")
-  public JSONObject insertUser(User user) {
-    return userService.insertUser(user);
+  @PostMapping
+  public void insertUser(User user) {
+    userService.insertUser(user);
   }
 }

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-  JSONObject insertUser(User user);
+  void insertUser(User user);
 }
