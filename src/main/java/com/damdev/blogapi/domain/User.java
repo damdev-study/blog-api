@@ -1,5 +1,6 @@
 package com.damdev.blogapi.domain;
 
+import java.sql.Timestamp;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
@@ -7,8 +8,19 @@ import org.springframework.data.annotation.Id;
 public class User {
 
   @Id
-  private String id;
+  private int id;
+
   private String userId;
-  private String name;
-  private String pass;
+
+  private String userName;
+
+  private String password;
+
+  private Timestamp regDate;
+
+  private Timestamp modifyDate;
+
+  private String status;
+
+  private String roll;
 }
