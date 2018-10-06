@@ -5,7 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 @Data
-public class User {
+public class UserInfo {
 
   @Id
   private int id;

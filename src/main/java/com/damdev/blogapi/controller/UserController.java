@@ -1,6 +1,6 @@
 package com.damdev.blogapi.controller;
 
-import com.damdev.blogapi.domain.User;
+import com.damdev.blogapi.domain.UserInfo;
 import com.damdev.blogapi.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class UserController {
   UserService userService;
 
   @PostMapping
-  public void signUpUser(HttpServletRequest request, @RequestBody User user) {
+  public void signUpUser(HttpServletRequest request, @RequestBody UserInfo user) {
     userService.insertUser(user);
   }
 }

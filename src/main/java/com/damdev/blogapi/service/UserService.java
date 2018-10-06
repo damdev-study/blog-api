@@ -1,7 +1,7 @@
 package com.damdev.blogapi.service;
 
-import com.damdev.blogapi.domain.User;
+import com.damdev.blogapi.domain.UserInfo;
 
 public interface UserService {
-  void insertUser(User user);
+  void insertUser(UserInfo user);
 }
