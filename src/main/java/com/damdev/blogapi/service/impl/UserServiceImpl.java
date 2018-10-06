@@ -5,9 +5,10 @@ import com.damdev.blogapi.repository.UserRepo;
 import com.damdev.blogapi.service.UserService;
 import java.sql.Timestamp;
 import java.util.Date;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
   @Autowired
