@@ -17,7 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-      .antMatchers("/").permitAll()  // url 에 권한 주기
+      .antMatchers("/", "/damdev/api/user").permitAll()  // url 에 권한 주기
       .anyRequest().authenticated()
       .and()
       .formLogin().and()
