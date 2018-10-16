@@ -5,24 +5,24 @@ import com.damdev.blogapi.repository.UserRepo;
 import com.damdev.blogapi.service.UserService;
 import java.sql.Timestamp;
 import java.util.Date;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-  @Autowired
+  @Resource
   UserRepo userRepo;
 
   @Override
-  public void insertUser(UserInfo user) {
+  public void insertUser(UserInfo userInfo) {
 
     Date date = new Date();
     Timestamp timestamp = new Timestamp(date.getTime());
-    user.setRegDate(timestamp);
-    user.setModifyDate(timestamp);
+    userInfo.setRegDate(timestamp);
+    userInfo.setModifyDate(timestamp);
 
-    userRepo.insert(user);
+    userRepo.save(userInfo);
   }
 
 

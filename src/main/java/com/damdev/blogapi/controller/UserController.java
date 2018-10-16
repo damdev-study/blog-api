@@ -15,7 +15,7 @@ public class UserController {
   UserService userService;
 
   @PostMapping
-  public void signUpUser(HttpServletRequest request, @RequestBody UserInfo user) {
-    userService.insertUser(user);
+  public void signUpUser(@RequestBody UserInfo userInfo) {
+    userService.insertUser(userInfo);
   }
 }

@@ -13,7 +13,9 @@ Content-Type: application/json
   "userName":"josh",
   "password":"1234",
   "status":"unauth",
-  "roll":"admin"
+  "roll":"admin",
+  "regDate":"",
+  "modifyDate":""
   //test 전
 }
 
