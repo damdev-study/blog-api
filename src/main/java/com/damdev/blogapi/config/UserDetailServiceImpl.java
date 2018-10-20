@@ -26,6 +26,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+
     Optional<UserInfo> byUserId = userRepo.findByUserId(userId);
     UserInfo userInfo = byUserId.orElseThrow(() -> new UsernameNotFoundException(userId));
 
@@ -36,3 +37,4 @@ public class UserDetailServiceImpl implements UserDetailsService {
     return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
   }
 }
+

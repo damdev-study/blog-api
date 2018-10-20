@@ -2,7 +2,9 @@ package com.damdev.blogapi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,25 +16,26 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
  * Author : zenic Created : 05/10/2018
  */
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-        .csrf().disable() // csrf 토큰 미사용 선언 - 토큰 미사용은 추천방법 아니므로 해결책이 될 수 없음
-        //.httpBasic().and()
-        .authorizeRequests()
-        .antMatchers("/**", "/damdev/api/user").permitAll()  // url 에 권한 주기
-        .anyRequest().authenticated();
-        //.and().formLogin()
-        //.and().addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-        //.csrf().csrfTokenRepository(csrfTokenRepository());
-  }
-
-  private CsrfTokenRepository csrfTokenRepository() {
-    HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
-    repository.setHeaderName("X-CSRF-TOKEN");
-    return repository;
+      .csrf().disable()
+      .authorizeRequests()
+      .antMatchers("/oauth/token", "/damdev/api/user").permitAll()
+      .antMatchers("/**").permitAll()  // url 에 권한 주기
+      .anyRequest().authenticated()
+      .and()
+      .formLogin().and()
+      .httpBasic();
   }
 
   @Bean
