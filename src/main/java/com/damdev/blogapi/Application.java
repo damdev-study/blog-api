@@ -1,14 +1,17 @@
 package com.damdev.blogapi;
 
+import com.damdev.blogapi.config.CustomUserDetails;
 import com.damdev.blogapi.domain.UserInfo;
 import com.damdev.blogapi.repository.UserRepo;
 import java.util.Optional;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Slf4j
@@ -24,6 +27,13 @@ public class Application implements ApplicationRunner {
   public static void main(String[] args) {
     SpringApplication application = new SpringApplication(Application.class);
     application.run(args);
+  }
+
+  @Autowired
+  public void authenticationManager(AuthenticationManagerBuilder builder, UserRepo userRepo)
+    throws Exception {
+    builder
+      .userDetailsService(s -> new CustomUserDetails(userRepo.findByUserId(s).get()));
   }
 
   @Override

@@ -24,6 +24,4 @@ public class UserServiceImpl implements UserService {
 
     userRepo.insert(user);
   }
-
-
 }
