@@ -5,17 +5,26 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST localhost:8080/damdev/api/user
+# POST http://localhost:8080/damdev/api/user
+PUT http://localhost:8080/damdev/api/user
 Content-Type: application/json
+# X-CSRF-TOKEN: 4e8e5c6c-6c9c-4790-814e-6c382a8ff64e
+# Cookie: X-CSRF-TOKEN=4e8e5c6c-6c9c-4790-814e-6c382a8ff64e
+
+//{
+//  "id":"1",
+//  "userId":"wdhv2006@gmail.com",
+//  "userName":"josh",
+//  "password":"1234",
+//  "status":"unauth",
+//  "roll":"admin",
+//  "regDate":"",
+//  "modifyDate":""
+//}
 
 {
-  "userId":"wdhv2006@gmail.com",
-  "userName":"josh",
-  "password":"1234",
-  "status":"unauth",
-  "roll":"admin"
-  //test 전
+  "id":"1",
+  "password":"9876"
 }
-
 ###
 
