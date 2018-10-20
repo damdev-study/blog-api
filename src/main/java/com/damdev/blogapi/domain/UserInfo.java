@@ -1,6 +1,5 @@
 package com.damdev.blogapi.domain;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import lombok.Data;
 import lombok.Generated;
