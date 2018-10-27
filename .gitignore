@@ -27,7 +27,7 @@
 ######################
 # Eclipse
 ######################
-  
+
 *.pydevproject
 .project
 .metadata
@@ -42,3 +42,5 @@ tmp/**/*
 .settings/
 .loadpath
 /src/main/resources/rebel.xml
+
+application.yml
