@@ -44,6 +44,7 @@ public class Application implements ApplicationRunner {
       addUser.setUserId("admin");
       addUser.setPassword(passwordEncoder.encode("1234"));
       addUser.setUserName("관리자");
+      addUser.setRole("ROLE_ADMIN");
 
       return userRepo.save(addUser);
     });
