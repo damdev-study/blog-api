@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
     Date date = new Date();
     userInfo.setRegDate(date);
     userInfo.setModifyDate(date);
+    userInfo.setRole("ROLE_USER");
 
     UserInfo result = userRepo.save(userInfo);
 
@@ -46,8 +47,8 @@ public class UserServiceImpl implements UserService {
       byId.setStatus(userInfo.getStatus());
     }
 
-    if(userInfo.getRoll() != null && !userInfo.getRoll().isEmpty()) {
-      byId.setRoll(userInfo.getRoll());
+    if(userInfo.getRole() != null && !userInfo.getRole().isEmpty()) {
+      byId.setRole(userInfo.getRole());
     }
 
     if(userInfo.getPassword() != null && !userInfo.getPassword().isEmpty()) {
