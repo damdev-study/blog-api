@@ -45,7 +45,7 @@ public class LoginServiceImpl implements LoginService{
 					resultObj.put("error", "server internal error");
 					log.error("/oauth/token "+e.getStatusCode()+" error:" + e.getResponseBodyAsString());
 				}
-				else if(e.getStatusCode().is4xxClientError()) {
+				else {
 					resultObj = (JSONObject) new JSONParser().parse(e.getResponseBodyAsString());
 					log.error("/oauth/token "+e.getStatusCode()+" error:"+e.getResponseBodyAsString());
 				}
