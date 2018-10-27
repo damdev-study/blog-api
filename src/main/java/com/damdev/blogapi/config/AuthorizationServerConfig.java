@@ -59,7 +59,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
   @Override
   public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-    security.passwordEncoder(passwordEncoder);
+    security
+        .passwordEncoder(passwordEncoder)
+        .tokenKeyAccess("permitAll()")
+        .checkTokenAccess("permitAll()");
   }
 
   @Override
