@@ -39,13 +39,13 @@ public class UserController {
   }
 
   @PutMapping
-  public String modifyUser(HttpServletRequest request/*@RequestBody UserInfo userInfo*/) {
+  public String modifyUser(HttpServletRequest request, @RequestBody UserInfo userInfo) {
     String result = "";
     log.info("modifyUser");
     if(request.getAttribute("error_description") != null) {
       result = request.getAttribute("error_description").toString();
     } else {
-//      result = userService.updateUser(userInfo);
+      //result = userService.updateUser(userInfo);
       result = "success";
     }
 
