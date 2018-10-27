@@ -24,5 +24,5 @@ public class UserInfo {
 
   private String status;
 
-  private String roll;
+  private String role;
 }
