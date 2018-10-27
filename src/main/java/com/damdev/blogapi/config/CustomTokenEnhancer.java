@@ -40,7 +40,7 @@ public class CustomTokenEnhancer implements TokenEnhancer {
     additionalInfo.put("id", userInfo.getId());
     additionalInfo.put("userId", userId);
     additionalInfo.put("status", userInfo.getStatus());
-    additionalInfo.put("role", userInfo.getRoll());
+    additionalInfo.put("role", userInfo.getRole());
 
     ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
     return accessToken;
