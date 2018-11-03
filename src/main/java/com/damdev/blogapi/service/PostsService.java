@@ -2,7 +2,7 @@ package com.damdev.blogapi.service;
 
 import com.damdev.blogapi.domain.Posts;
 import com.damdev.blogapi.param.PostsParam;
-import java.util.List;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 
 /**
@@ -13,7 +13,7 @@ public interface PostsService {
 
   void regPost(Authentication authentication, PostsParam postsParam);
 
-  List<Posts> getPosts(PostsParam postsParam);
+  Page<Posts> getPosts(PostsParam postsParam);
 
   void updatePost(Authentication authentication, PostsParam postsParam);
 

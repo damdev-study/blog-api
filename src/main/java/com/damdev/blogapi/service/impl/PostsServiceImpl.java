@@ -8,10 +8,11 @@ import com.damdev.blogapi.service.PostsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -51,8 +52,10 @@ public class PostsServiceImpl implements PostsService {
   }
 
   @Override
-  public List<Posts> getPosts(PostsParam postsParam) {
-    return postsRepo.findByTitleContainsOrContentContains(postsParam.getSearchValue());
+  public Page<Posts> getPosts(PostsParam postsParam) {
+    return postsRepo
+      .findByTitleContainsOrContentContains(postsParam.getSearchValue(),
+        PageRequest.of(postsParam.getCurrentPage(), postsParam.getContentCount()));
   }
 
   @Override

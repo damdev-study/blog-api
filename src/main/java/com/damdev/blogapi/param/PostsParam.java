@@ -21,8 +21,8 @@ public class PostsParam {
   // List
   private String searchType;
   private String searchValue;
-  private String currentPage;
-  private String contentCount;
+  private int currentPage;
+  private int contentCount;
 
   @Override
   public String toString() {

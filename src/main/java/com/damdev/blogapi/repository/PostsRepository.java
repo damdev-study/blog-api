@@ -1,7 +1,8 @@
 package com.damdev.blogapi.repository;
 
 import com.damdev.blogapi.domain.Posts;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
@@ -10,5 +11,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface PostsRepository extends MongoRepository<Posts, String> {
 
-  List<Posts> findByTitleContainsOrContentContains(String searchValue);
+  Page<Posts> findByTitleContainsOrContentContains(String searchValue, Pageable pageable);
 }

@@ -3,8 +3,8 @@ package com.damdev.blogapi.controller;
 import com.damdev.blogapi.domain.Posts;
 import com.damdev.blogapi.param.PostsParam;
 import com.damdev.blogapi.service.PostsService;
-import java.util.List;
 import javax.annotation.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +30,7 @@ public class PostsController {
   }
 
   @GetMapping
-  public List<Posts> getPosts(PostsParam postsParam) {
+  public Page<Posts> getPosts(PostsParam postsParam) {
     return postsService.getPosts(postsParam);
   }
 
