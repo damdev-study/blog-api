@@ -60,9 +60,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
   @Override
   public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
     security
-        .passwordEncoder(passwordEncoder)
-        .tokenKeyAccess("permitAll()")
-        .checkTokenAccess("permitAll()");
+      .passwordEncoder(passwordEncoder)
+      .tokenKeyAccess("permitAll()")
+      .checkTokenAccess("permitAll()");
   }
 
   @Override
@@ -85,7 +85,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     clients.inMemory()
       .withClient(clientId)
       .authorizedGrantTypes("password", "refresh_token")
-      .authorities("ROLE_USER")
       .scopes("read", "write")
       .resourceIds(resourceId)
       .accessTokenValiditySeconds(accessTokenValiditySeconds)

@@ -8,7 +8,6 @@ import java.util.Optional;
 import javax.annotation.Resource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,11 +29,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
     Optional<UserInfo> byUserId = userRepo.findByUserId(userId);
     UserInfo userInfo = byUserId.orElseThrow(() -> new UsernameNotFoundException(userId));
 
-    return new User(userInfo.getUserId(), userInfo.getPassword(), authorities());
+    return new CustomUserDetails(userInfo, authorities(userInfo));
   }
 
-  private Collection<? extends GrantedAuthority> authorities() {
-    return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+  private Collection<? extends GrantedAuthority> authorities(UserInfo userInfo) {
+    return Arrays.asList(new SimpleGrantedAuthority(userInfo.getRole()));
   }
 }
 

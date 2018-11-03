@@ -1,10 +1,8 @@
 package com.damdev.blogapi.config;
 
 import com.damdev.blogapi.domain.UserInfo;
-import java.util.Arrays;
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -17,15 +15,15 @@ public class CustomUserDetails implements UserDetails {
   private String password;
   Collection<? extends GrantedAuthority> authorities;
 
-  public CustomUserDetails(UserInfo userInfo) {
+  public CustomUserDetails(UserInfo userInfo, Collection<? extends GrantedAuthority> authorities) {
     this.username = userInfo.getUserId();
     this.password = userInfo.getPassword();
-    this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+    this.authorities = authorities;
   }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
+    return this.authorities;
   }
 
   @Override
