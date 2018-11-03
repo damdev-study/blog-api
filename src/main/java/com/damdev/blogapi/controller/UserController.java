@@ -2,13 +2,10 @@ package com.damdev.blogapi.controller;
 
 import com.damdev.blogapi.domain.UserInfo;
 import com.damdev.blogapi.service.UserService;
-import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,31 +21,14 @@ public class UserController {
   UserService userService;
 
   @PostMapping
-  public String signUpUser(HttpServletResponse response, HttpServletRequest request, @RequestBody UserInfo userInfo) {
-    String result = "";
+  public void signUpUser(HttpServletResponse response, HttpServletRequest request, @RequestBody UserInfo userInfo) {
     log.info("signUpUser");
-    result = userService.insertUser(userInfo);
-    return result;
-  }
-
-  @GetMapping
-  public String signInUser(HttpServletResponse response, HttpServletRequest request, HttpSession session) {
-    String result = "";
-    log.info("signInUser");
-    return result;
+    userService.insertUser(userInfo);
   }
 
   @PutMapping
-  public String modifyUser(HttpServletRequest request, @RequestBody UserInfo userInfo) {
-    String result = "";
+  public void modifyUser(HttpServletResponse response, HttpServletRequest request, @RequestBody UserInfo userInfo) {
     log.info("modifyUser");
-    if(request.getAttribute("error_description") != null) {
-      result = request.getAttribute("error_description").toString();
-    } else {
-      userService.updateUser(userInfo);
-      result = "success";
-    }
-
-    return result;
+    userService.updateUser(userInfo);
   }
 }
