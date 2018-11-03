@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping
 public class UserController {
 
   @Autowired
@@ -22,13 +20,13 @@ public class UserController {
 
   @PostMapping("/damdev/api/signup")
   public void signUpUser(HttpServletResponse response, HttpServletRequest request, @RequestBody UserInfo userInfo) {
-    log.info("signUpUser");
+    log.debug("signUpUser");
     userService.insertUser(userInfo);
   }
 
   @PutMapping("/damdev/api/user")
   public void modifyUser(HttpServletResponse response, HttpServletRequest request, @RequestBody UserInfo userInfo) {
-    log.info("modifyUser");
+    log.debug("modifyUser");
     userService.updateUser(userInfo);
   }
 }
