@@ -1,13 +1,10 @@
 package com.damdev.blogapi.interceptor;
 
-import java.net.URL;
+import com.damdev.blogapi.error.RestException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -35,28 +32,10 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 
     requestUrl = requestUrl.replace(requestUri, "");
 
-    log.info(requestUrl+"/oauth/check_token");
-
-    String result = "";
-
     try {
-
-      JSONObject resultJson = restTemplate.postForObject(requestUrl+"/oauth/check_token", postParams, JSONObject.class);
-
+      restTemplate.postForObject(requestUrl+"/oauth/check_token", postParams, JSONObject.class);
     } catch (HttpStatusCodeException e) {
-
-      if(e.getStatusCode().toString().equals("400")) {
-
-        JSONObject errorResult = (JSONObject)new JSONParser().parse(e.getResponseBodyAsString());
-
-        if(errorResult.get("error_description").toString().equals("Token has expired")) {
-
-          request.setAttribute("error_description", errorResult.get("error_description"));
-
-        }
-
-      }
-
+      throw new RestException(Integer.parseInt(e.getStatusCode().toString()), e.getResponseBodyAsString());
     }
 
     return true;
