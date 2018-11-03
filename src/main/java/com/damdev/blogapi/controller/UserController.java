@@ -45,7 +45,7 @@ public class UserController {
     if(request.getAttribute("error_description") != null) {
       result = request.getAttribute("error_description").toString();
     } else {
-      //result = userService.updateUser(userInfo);
+      userService.updateUser(userInfo);
       result = "success";
     }
 
