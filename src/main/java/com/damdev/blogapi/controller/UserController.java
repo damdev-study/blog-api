@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/damdev/api/user")
+@RequestMapping
 public class UserController {
 
   @Autowired
   UserService userService;
 
-  @PostMapping
+  @PostMapping("/damdev/api/signup")
   public void signUpUser(HttpServletResponse response, HttpServletRequest request, @RequestBody UserInfo userInfo) {
     log.info("signUpUser");
     userService.insertUser(userInfo);
   }
 
-  @PutMapping
+  @PutMapping("/damdev/api/user")
   public void modifyUser(HttpServletResponse response, HttpServletRequest request, @RequestBody UserInfo userInfo) {
     log.info("modifyUser");
     userService.updateUser(userInfo);
